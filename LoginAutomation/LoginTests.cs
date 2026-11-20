@@ -17,12 +17,12 @@ namespace LoginAutomation
 
         public static IEnumerable<object[]> GetTestData()
         {
-            using (var reader = new StreamReader(Path.Combine(BaseDir, "LoginTestData.csv")))
             // the CSV header is lower-case ("username,password"): match headers case-insensitively
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 PrepareHeaderForMatch = args => args.Header.Trim().ToLowerInvariant()
             };
+            using (var reader = new StreamReader(Path.Combine(BaseDir, "LoginTestData.csv")))
             using (var csv = new CsvReader(reader, config))
             {
                 foreach (var record in csv.GetRecords<TestData>())
