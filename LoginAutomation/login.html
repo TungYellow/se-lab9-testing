@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Login Page</title>
+    <style>
+        body { font-family: Segoe UI, Arial, sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding-top: 80px; }
+        #loginForm { background: #fff; padding: 28px 34px; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,.15); width: 320px; }
+        h2 { margin-top: 0; color: #1a3d7c; }
+        label { font-weight: 600; }
+        input { width: 100%; padding: 8px; margin-top: 4px; box-sizing: border-box; border: 1px solid #bbb; border-radius: 5px; }
+        button { width: 100%; padding: 10px; background: #1a73e8; color: #fff; border: 0; border-radius: 5px; font-size: 15px; cursor: pointer; }
+        #message { margin-top: 14px; font-weight: 600; }
+        .success { color: #188038; } .error { color: #d93025; }
+    </style>
+</head>
+<body>
+    <form id="loginForm">
+        <h2>SE Lab 9 – Login</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <button type="submit" id="loginButton">Login</button>
+        <div id="message"></div>
+    </form>
+    <script>
+        // Demo accounts (a real site would check these on the server, e.g. PHP + MySQL)
+        const users = { user1: "password1", user2: "password2", user3: "password3" };
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const u = document.getElementById("username").value.trim();
+            const p = document.getElementById("password").value;
+            const msg = document.getElementById("message");
+            if (users[u] && users[u] === p) {
+                msg.className = "success";
+                msg.textContent = "Login successful! Welcome, " + u;
+            } else {
+                msg.className = "error";
+                msg.textContent = "Invalid username or password";
+            }
+        });
+    </script>
+</body>
+</html>
